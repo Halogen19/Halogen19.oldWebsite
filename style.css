@@ -1,0 +1,19 @@
+h1, h2 {
+    text-align: center;
+    color: red;
+}
+body{
+    background-color: darkcyan;
+}
+#title{
+    background-color: black;
+}
+.project_list_container{
+    text-align: center;
+}
+.project_list{
+    display: inline-block;
+}
+#homepage_link{
+    text-align: center;
+}
