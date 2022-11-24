@@ -40,6 +40,31 @@ function createControls( camera ) {
 
 //cube texture
 const loader = new THREE.TextureLoader();
+var BlankFace = new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')});
+var RedFace = new THREE.MeshBasicMaterial({map: loader.load('images/RedFace.png')});
+var WhiteFace = new THREE.MeshBasicMaterial({map: loader.load('images/WhiteFace.png')});
+var BlueFace = new THREE.MeshBasicMaterial({map: loader.load('images/BlueFace.png')});
+var GreenFace = new THREE.MeshBasicMaterial({map: loader.load('images/GreenFace.png')});
+var OrangeFace = new THREE.MeshBasicMaterial({map: loader.load('images/OrangeFace.png')});
+var YellowFace = new THREE.MeshBasicMaterial({map: loader.load('images/YellowFace.png')});
+
+//Array of faces for each cube
+const materials = new Array(27);
+for (var w = 0; w < 27; w++){
+  materials[w] = new Array(6);
+}
+//Array of cube objects
+const cubes = [];
+
+//colouring the cubes, setting up the materials array
+for(var i = 0;i<27;i++){
+  for (var j=0;j<6;j++){
+    materials[i][j] = RedFace;
+  }
+}
+
+
+
 
 const materials1 = [
     new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}), // x positive
@@ -48,37 +73,62 @@ const materials1 = [
     new THREE.MeshBasicMaterial({map: loader.load('images/WhiteFace.png')}),   // y negative
     new THREE.MeshBasicMaterial({map: loader.load('images/RedFace.png')}),   // z positive
     new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}),   // z negative
-  ];
+];
 
-  const materials2 = [
+const materials2 = [
     new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}), // x positive
     new THREE.MeshBasicMaterial({map: loader.load('images/BlueFace.png')}), // x negative
     new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}), // y positive
     new THREE.MeshBasicMaterial({map: loader.load('images/WhiteFace.png')}),   // y negative
     new THREE.MeshBasicMaterial({map: loader.load('images/RedFace.png')}),   // z positive
     new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}),   // z negative
-  ];
+];
 
+const materials3 = [
+    new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}), // x positive
+    new THREE.MeshBasicMaterial({map: loader.load('images/BlueFace.png')}), // x negative
+    new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}), // y positive
+    new THREE.MeshBasicMaterial({map: loader.load('images/WhiteFace.png')}),   // y negative
+    new THREE.MeshBasicMaterial({map: loader.load('images/RedFace.png')}),   // z positive
+    new THREE.MeshBasicMaterial({map: loader.load('images/BlankFace.png')}),   // z negative
+];
 
 
 //create 3d object(s)
-const geometry = new THREE.BoxGeometry(5,5,5);
-const cube1 = new THREE.Mesh(geometry,materials1);
-const cube2 = new THREE.Mesh(geometry, materials2)
+const geometry = new THREE.BoxGeometry(5,5,5); //Making the cube geometry
+//const cube1 = new THREE.Mesh(geometry, materials1);
+//const cube2 = new THREE.Mesh(geometry, materials2)
+//const cube3 = new THREE.Mesh(geometry, materials3)
 
 
-cube1.position.x = 0;
-cube1.position.y = 0;
-cube1.position.z = 0;
-cube1.rotation.z = 45;
-cube1.rotation.x = -45;
+
+//adding all the cubes objects to an array
+for (var k = 0; k<27;k++){
+  cubes[k]= new THREE.Mesh(geometry, materials[k]);
 
 
-cube2.position.x = 0;
-cube2.position.y = 5;
-cube2.position.z = 0;
-cube2.rotation.z = 45;
-cube2.rotation.x = -45;
+  cubes[k].position.x = 0;
+  cubes[k].position.y = k*5;
+  cubes[k].position.z = 0;
+  scene.add(cubes[k]);
+}
+
+//cube1.position.x = 0;
+//cube1.position.y = 0;
+//cube1.position.z = 0;
+//cube1.rotation.z = 45;
+//cube1.rotation.x = -45;
+
+
+//cube2.position.x = 0;
+//cube2.position.y = 5;
+//cube2.position.z = 0;
+//cube2.rotation.z = 45;
+//cube2.rotation.x = -45;
+
+//cube3.position.x = 0;
+//cube3.position.y = 10;
+//cube3.position.z = 0;
 
 
 //create a point light
@@ -87,8 +137,9 @@ light.position.set( 30, 45, 60 );
 
 //add object(s) to scene
 
-scene.add(cube2);
-scene.add(cube1);
+//scene.add(cube1);
+//scene.add(cube2);
+//scene.add(cube3);
 scene.add(light);
 
 const light1 = new THREE.AmbientLight(); // soft white light
