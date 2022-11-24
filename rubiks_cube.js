@@ -58,10 +58,13 @@ const cubes = [];
 
 //colouring the cubes, setting up the materials array
 for(var i = 0;i<27;i++){
-  for (var j=0;j<6;j++){
-    materials[i][j] = RedFace;
+    materials[i][0] = GreenFace;
+    materials[i][1] = BlueFace;
+    materials[i][2] = RedFace;
+    materials[i][3] = OrangeFace;
+    materials[i][4] = WhiteFace;
+    materials[i][5] = YellowFace;
   }
-}
 
 
 
@@ -105,13 +108,20 @@ const geometry = new THREE.BoxGeometry(5,5,5); //Making the cube geometry
 //adding all the cubes objects to an array
 for (var k = 0; k<27;k++){
   cubes[k]= new THREE.Mesh(geometry, materials[k]);
-
-
-  cubes[k].position.x = 0;
-  cubes[k].position.y = k*5;
-  cubes[k].position.z = 0;
-  scene.add(cubes[k]);
 }
+var cubeNumber = 0;
+for (var i = 0; i < 3; i++){
+  for( var j = 0; j < 3; j++){
+    for (var p = 0; p < 3; p++){
+      cubes[cubeNumber].position.x = i*5;
+      cubes[cubeNumber].position.y = j*5;
+      cubes[cubeNumber].position.z = p*5;
+      scene.add(cubes[cubeNumber]);
+      cubeNumber++;
+    }
+  }
+}
+
 
 //cube1.position.x = 0;
 //cube1.position.y = 0;
