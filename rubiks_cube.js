@@ -109,6 +109,9 @@ const geometry = new THREE.BoxGeometry(5,5,5); //Making the cube geometry
 for (var k = 0; k<27;k++){
   cubes[k]= new THREE.Mesh(geometry, materials[k]);
 }
+
+
+//positioning the cubes using 3 nested for loops and adding the cubes to the scene
 var cubeNumber = 0;
 for (var i = 0; i < 3; i++){
   for( var j = 0; j < 3; j++){
@@ -123,33 +126,16 @@ for (var i = 0; i < 3; i++){
 }
 
 
-//cube1.position.x = 0;
-//cube1.position.y = 0;
-//cube1.position.z = 0;
-//cube1.rotation.z = 45;
-//cube1.rotation.x = -45;
 
-
-//cube2.position.x = 0;
-//cube2.position.y = 5;
-//cube2.position.z = 0;
-//cube2.rotation.z = 45;
-//cube2.rotation.x = -45;
-
-//cube3.position.x = 0;
-//cube3.position.y = 10;
-//cube3.position.z = 0;
 
 
 //create a point light
 const light = new THREE.PointLight( 0xffffff, 10, 100 );
 light.position.set( 30, 45, 60 );
 
-//add object(s) to scene
+//add light to scene
 
-//scene.add(cube1);
-//scene.add(cube2);
-//scene.add(cube3);
+
 scene.add(light);
 
 const light1 = new THREE.AmbientLight(); // soft white light
